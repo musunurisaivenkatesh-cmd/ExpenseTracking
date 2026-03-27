@@ -1,0 +1,321 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap');
+
+/* ─── CSS Variables ─────────────────────────── */
+:root {
+  --bg-base: #050505;
+  --bg-card: rgba(255, 255, 255, 0.04);
+  --bg-hover: rgba(255, 255, 255, 0.07);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.15);
+
+  --text-primary: #f0f0f0;
+  --text-secondary: #9ca3af;
+  --text-muted: #6b7280;
+
+  --blue: #3B82F6;
+  --blue-glow: rgba(59, 130, 246, 0.25);
+  --blue-dim: rgba(59, 130, 246, 0.12);
+
+  --emerald: #10B981;
+  --emerald-glow: rgba(16, 185, 129, 0.25);
+  --emerald-dim: rgba(16, 185, 129, 0.12);
+
+  --rose: #F43F5E;
+  --rose-glow: rgba(244, 63, 94, 0.25);
+  --rose-dim: rgba(244, 63, 94, 0.12);
+
+  --amber: #F59E0B;
+  --amber-dim: rgba(245, 158, 11, 0.12);
+
+  --purple: #8B5CF6;
+  --purple-dim: rgba(139, 92, 246, 0.12);
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Manrope', sans-serif;
+
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
+  --shadow-glow-blue: 0 0 30px rgba(59, 130, 246, 0.15);
+  --shadow-glow-emerald: 0 0 30px rgba(16, 185, 129, 0.15);
+  --shadow-glow-rose: 0 0 30px rgba(244, 63, 94, 0.15);
+
+  --nav-width: 240px;
+  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme='light'] {
+  --bg-base: #f8fafc;
+  --bg-card: rgba(255, 255, 255, 0.7);
+  --bg-hover: rgba(0, 0, 0, 0.05);
+  --border: rgba(0, 0, 0, 0.1);
+  --border-hover: rgba(0, 0, 0, 0.2);
+
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+
+  --blue: #2563EB;
+  --blue-glow: rgba(37, 99, 235, 0.2);
+  --blue-dim: rgba(37, 99, 235, 0.12);
+
+  --emerald: #059669;
+  --emerald-glow: rgba(5, 150, 105, 0.2);
+  --emerald-dim: rgba(5, 150, 105, 0.12);
+
+  --rose: #e11d48;
+  --rose-glow: rgba(225, 29, 72, 0.2);
+  --rose-dim: rgba(225, 29, 72, 0.12);
+
+  --amber: #d97706;
+  --amber-dim: rgba(217, 119, 6, 0.12);
+
+  --purple: #7c3aed;
+  --purple-dim: rgba(124, 58, 237, 0.12);
+
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.05);
+}
+
+/* ─── Reset & Base ──────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-base);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#root { min-height: 100vh; }
+
+/* ─── Typography ────────────────────────────── */
+h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); font-weight: 600; color: var(--text-primary); }
+p { color: var(--text-secondary); line-height: 1.6; }
+a { text-decoration: none; color: inherit; }
+
+/* ─── Glassmorphism Card ────────────────────── */
+.glass-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: var(--radius-lg);
+  transition: var(--transition);
+}
+.glass-card:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-hover);
+}
+
+/* ─── Buttons ───────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
+  border: none;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--blue);
+  color: #fff;
+  box-shadow: 0 0 20px var(--blue-glow);
+}
+.btn-primary:hover { background: #2563eb; transform: translateY(-1px); box-shadow: 0 4px 24px var(--blue-glow); }
+.btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+.btn-ghost:hover { background: var(--bg-hover); color: var(--text-primary); border-color: var(--border-hover); }
+.btn-danger {
+  background: var(--rose-dim);
+  color: var(--rose);
+  border: 1px solid rgba(244, 63, 94, 0.2);
+}
+.btn-danger:hover { background: var(--rose-glow); }
+.btn-success {
+  background: var(--emerald);
+  color: #fff;
+  box-shadow: 0 0 20px var(--emerald-glow);
+}
+.btn-success:hover { background: #059669; transform: translateY(-1px); }
+
+/* ─── Form Inputs ───────────────────────────── */
+.input-group { display: flex; flex-direction: column; gap: 6px; }
+.input-label { font-size: 13px; font-weight: 600; color: var(--text-secondary); letter-spacing: 0.5px; }
+.input-field {
+  width: 100%;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 14px;
+  outline: none;
+  transition: var(--transition);
+}
+.input-field::placeholder { color: var(--text-muted); }
+.input-field:focus { border-color: var(--blue); background: rgba(59,130,246,0.04); box-shadow: 0 0 0 3px rgba(59,130,246,0.12); }
+.input-field select { 
+  cursor: pointer; 
+  color-scheme: dark;
+}
+.input-field select option {
+  background-color: #1f2937;
+  color: #f9fafb;
+}
+[data-theme='light'] .input-field select option {
+  background-color: #ffffff;
+  color: #111827;
+}
+[data-theme='light'] .input-field select {
+  color-scheme: light;
+}
+
+/* ─── Background Mesh ───────────────────────── */
+.bg-mesh {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(59,130,246,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 80%, rgba(139,92,246,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(16,185,129,0.03) 0%, transparent 60%),
+    var(--bg-base);
+}
+
+[data-theme='light'] .bg-mesh {
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(37,99,235,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 80%, rgba(124,58,237,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(5,150,105,0.05) 0%, transparent 60%),
+    var(--bg-base);
+}
+
+/* ─── Scrollbar ─────────────────────────────── */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+/* ─── Badge ─────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.badge-blue { background: var(--blue-dim); color: var(--blue); }
+.badge-emerald { background: var(--emerald-dim); color: var(--emerald); }
+.badge-rose { background: var(--rose-dim); color: var(--rose); }
+.badge-amber { background: var(--amber-dim); color: var(--amber); }
+.badge-purple { background: var(--purple-dim); color: var(--purple); }
+
+/* ─── Animations ────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px var(--blue-glow); }
+  50% { box-shadow: 0 0 40px rgba(59,130,246,0.4); }
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.animate-fadeInUp { animation: fadeInUp 0.4s ease forwards; }
+.animate-fadeIn { animation: fadeIn 0.3s ease forwards; }
+
+/* ─── Loading spinner ───────────────────────── */
+.spinner {
+  width: 20px; height: 20px;
+  border: 2px solid rgba(255,255,255,0.15);
+  border-top-color: var(--blue);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* ─── Divider ───────────────────────────────── */
+.divider { height: 1px; background: var(--border); margin: 20px 0; }
+
+/* ─── Empty State ───────────────────────────── */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 40px;
+  color: var(--text-muted);
+  text-align: center;
+}
+.empty-state svg { opacity: 0.3; }
+
+/* ─── Tooltip ───────────────────────────────── */
+.recharts-tooltip-wrapper .recharts-default-tooltip {
+  background: rgba(10,10,15,0.95) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-sm) !important;
+  backdrop-filter: blur(20px) !important;
+  box-shadow: var(--shadow-card) !important;
+  color: var(--text-primary) !important;
+}
+
+[data-theme='light'] .recharts-tooltip-wrapper .recharts-default-tooltip {
+  background: rgba(255,255,255,0.95) !important;
+}
+
+/* ─── Tab pills ─────────────────────────────── */
+.tab-group { display: flex; gap: 4px; background: rgba(255,255,255,0.04); border-radius: var(--radius-sm); padding: 4px; }
+.tab-pill {
+  flex: 1;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.tab-pill.active {
+  background: var(--blue);
+  color: #fff;
+  box-shadow: 0 0 16px rgba(59,130,246,0.3);
+}
+.tab-pill:not(.active):hover { color: var(--text-primary); background: var(--bg-hover); }
+
+/* ─── Responsive ─────────────────────────────── */
+@media (max-width: 768px) {
+  :root { --nav-width: 0px; }
+}
